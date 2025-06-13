@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "controller\\": "controller/",
+      "Service\\": "Service/",
+       "db\\": "db/",
+       "Middleware\\": "Middleware/"
+    }
+  },
+  "require-dev": {
+    "robmorgan/phinx": "^0.16.9"
+  }
+}
+

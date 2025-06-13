@@ -1,0 +1,15 @@
+# Node
+node_modules/
+dist/
+
+# PHP Composer
+Backend/vendor/
+
+# Docker
+.env
+.env.local
+phpmyadmin/
+
+# System files
+.DS_Store
+.vscode/

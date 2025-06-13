@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: PHP.Dockerfile
+    working_dir: /Backend/API
+    volumes:
+      - ./API:/Backend/API
+      - ./controller:/Backend/controller
+      - ./Service:/Backend/Service
+      - ./vendor:/Backend/vendor
+      - ./db:/Backend/db
+
+    ports:
+      - "8001:8000"
+    command: php -S 0.0.0.0:8000 -t .
+    restart: unless-stopped
+
+  mysql:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: secret123
+      MYSQL_DATABASE: developmentdb
+      MYSQL_USER: developer
+      MYSQL_PASSWORD: secret123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+    depends_on:
+  
+         - mysql
+    restart: unless-stopped
+
+volumes:
+  mysqldata: {}
