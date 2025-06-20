@@ -29,4 +29,12 @@ npm install
 npx vite --port 5174
 
 
+## ✅ Progress Summary
+
+- [x] JWT login flow (backend + frontend)
+- [x] Dockerized PHP, MariaDB, phpMyAdmin
+- [x] Role-based routing (admin/user)
+- [x] Register endpoint (working)
+- [x] Dashboard + protected routes
+- [x] Appointment creation (WIP)
 

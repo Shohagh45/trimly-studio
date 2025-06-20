@@ -4,7 +4,8 @@
       "controller\\": "controller/",
       "Service\\": "Service/",
        "db\\": "db/",
-       "Middleware\\": "Middleware/"
+       "Middleware\\": "Middleware/",
+       "Model\\": "Model/" 
     }
   },
   "require-dev": {

@@ -15,6 +15,8 @@
           <input type="submit" value="Login" />
         </div>
         <p v-if="error" class="error-msg">{{ error }}</p>
+        <p>Don't have an account? <router-link to="/register">Register here</router-link></p>
+
       </form>
     </div>
   </section>
@@ -35,13 +37,34 @@ async function handleLogin() {
     const response = await api.post('/login.php', {
       email: email.value,
       password: password.value
-    })
-    localStorage.setItem('token', response.data.token)
-    router.push('/dashboard')
+    });
+
+    const { token, role } = response.data;
+
+    if (!token || !role) {
+      throw new Error('Invalid login response');
+    }
+
+    // Save to localStorage
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', role);
+
+    // Redirect by role
+    if (role === 'admin') {
+      router.push('/admin');
+    } else {
+      router.push('/dashboard');
+    }
+
   } catch (err) {
-    error.value = err.response?.data?.error || 'Login failed'
+    console.error('Login error:', err);
+    error.value =
+      err.response?.data?.message ||
+      err.message ||
+      'Login failed. Please try again.';
   }
 }
+
 </script>
 
 <style scoped>

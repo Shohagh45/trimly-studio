@@ -23,6 +23,7 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
     'Phinx\\' => array($vendorDir . '/robmorgan/phinx/src/Phinx'),
+    'Model\\' => array($baseDir . '/Model'),
     'Middleware\\' => array($baseDir . '/Middleware'),
     'League\\Container\\' => array($vendorDir . '/league/container/src'),
     'Cake\\Utility\\' => array($vendorDir . '/cakephp/utility'),

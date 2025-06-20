@@ -49,6 +49,7 @@ class ComposerStaticInit180ce08b92c65e9181220dfdef87ac85
         ),
         'M' => 
         array (
+            'Model\\' => 6,
             'Middleware\\' => 11,
         ),
         'L' => 
@@ -133,6 +134,10 @@ class ComposerStaticInit180ce08b92c65e9181220dfdef87ac85
         'Phinx\\' => 
         array (
             0 => __DIR__ . '/..' . '/robmorgan/phinx/src/Phinx',
+        ),
+        'Model\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Model',
         ),
         'Middleware\\' => 
         array (

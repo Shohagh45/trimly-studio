@@ -4,72 +4,62 @@ namespace Service;
 
 use PDO;
 use Service\JWTService;
+use Model\UserModel;
 
 class AuthService
 {
-    private $pdo;
+    private $userModel;
 
     public function __construct($pdo)
     {
-        $this->pdo = $pdo;
+        $this->userModel = new UserModel($pdo);
     }
 
     public function login($email, $password)
-{
-    // Query the user
-    $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    {
+        $user = $this->userModel->findByEmail($email);
 
-    // Check password and respond
-    if ($user && password_verify($password, $user['password'])) {
-        $token = JWTService::createJWT([
-            'uid' => $user['id'],
-            'email' => $user['email'],
-            'exp' => time() + 3600
-        ], getenv('JWT_SECRET'));
+        if ($user && password_verify($password, $user['password'])) {
+            $token = JWTService::createJWT([
+                'uid' => $user['id'],
+                'email' => $user['email'],
+                'role' => $user['role'], 
+                'exp' => time() + 3600
+            ], getenv('JWT_SECRET'));
 
-        return [
-            'status' => true,
-            'message' => 'Login successful',
-            'token' => $token,
-            'code' => 200
-        ];
-    } else {
+            return [
+                'status' => true,
+                'message' => 'Login successful',
+                'token' => $token,
+                'role' => $user['role'],
+                'code' => 200
+            ];
+        }
+
         return [
             'status' => false,
             'message' => 'Invalid credentials',
             'code' => 401
         ];
     }
-}
-public function register(string $email, string $password): array
-{
-    // Check if user already exists
-    $stmt = $this->pdo->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->execute([$email]);
 
-    if ($stmt->fetch()) {
+    public function register(string $email, string $password): array
+    {
+        if ($this->userModel->findByEmail($email)) {
+            return [
+                'status' => false,
+                'message' => 'Email already in use',
+                'code' => 409
+            ];
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $this->userModel->create($email, $hashedPassword); 
+
         return [
-            'status' => false,
-            'message' => 'Email already in use',
-            'code' => 409
+            'status' => true,
+            'message' => 'User registered successfully',
+            'code' => 201
         ];
     }
-
-    // Hash the password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    // Insert new user
-    $stmt = $this->pdo->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
-    $stmt->execute([$email, $hashedPassword]);
-
-    return [
-        'status' => true,
-        'message' => 'User registered successfully',
-        'code' => 201
-    ];
-}
-
-
 }

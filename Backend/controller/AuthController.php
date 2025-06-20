@@ -28,8 +28,10 @@ class AuthController
         header('Content-Type: application/json');
         echo json_encode([
             'message' => $result['message'],
-            'token'   => $result['token'] ?? null
+            'token'   => $result['token'] ?? null,
+            'role' => $result['role'] ?? null //new code
         ]);
+        exit;
     }
     public function register()
     {

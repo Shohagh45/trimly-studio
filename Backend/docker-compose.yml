@@ -12,6 +12,8 @@ services:
       - ./Service:/Backend/Service
       - ./vendor:/Backend/vendor
       - ./db:/Backend/db
+      - ./Model:/Backend/Model
+      - ./Middleware:/Backend/Middleware
 
     ports:
       - "8001:8000"
