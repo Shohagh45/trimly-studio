@@ -11,7 +11,10 @@ A simple barbershop appointment booking app using Vue 3, PHP (no framework), and
 
 ### Admin
 - **Email**: user@example.com
-- **Password**: admin123
+- **Password**: password123
+### User
+- **Email**: shohagh@gmail.com
+- **Password**: 1234
 
 ### User
 - Register via frontend

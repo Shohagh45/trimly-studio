@@ -15,33 +15,44 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
 const route = useRoute()
-
-// Hide layout on login and register pages
 const showLayout = computed(() => !['/', '/register'].includes(route.path))
 </script>
 
 <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
 
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Wrapper takes full height and stacks content properly */
 .app-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-.main-content {
   flex: 1;
-}
-
-html, body, #app {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-#app > * {
+/* Main content grows and pushes footer down */
+.main-content {
   flex-grow: 1;
+  padding-bottom: 4rem; /* space above footer */
 }
 
+/* Background image behind everything */
 body::before {
   content: '';
   position: fixed;
@@ -51,7 +62,7 @@ body::before {
   height: 100vh;
   background: url('/background.jpg') no-repeat center center fixed;
   background-size: cover;
-  opacity: 0.15; /* Adjust this between 0 (fully transparent) and 1 (fully visible) */
+  opacity: 0.15;
   z-index: -1;
   pointer-events: none;
 }

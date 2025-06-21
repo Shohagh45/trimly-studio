@@ -68,7 +68,7 @@ public function handleDelete()
         return;
     }
 
-    $deleted = $this->appointmentService->delete($userId, $id);
+    $deleted = $this->appointmentService->deleteUserAppointment($userId, $id);
 
     if ($deleted) {
         echo json_encode(['message' => 'Appointment deleted']);
@@ -77,5 +77,33 @@ public function handleDelete()
         echo json_encode(['message' => 'Failed to delete appointment']);
     }
 }
+public function handleUpdateByUser()
+{
+    header('Content-Type: application/json');
+    $payload = AuthMiddleware::requireAuth();
+    $userId = $payload['uid'];
+
+    $input = json_decode(file_get_contents("php://input"), true);
+    $id = $input['id'] ?? null;
+    $date = $input['date'] ?? null;
+    $time = $input['time'] ?? null;
+    $description = $input['description'] ?? '';
+
+    if (!$id || !$date || !$time) {
+        http_response_code(400);
+        echo json_encode(['message' => 'ID, date and time are required']);
+        return;
+    }
+
+    $updated = $this->appointmentService->updateUserAppointment($userId, $id, $date, $time, $description);
+
+    if ($updated) {
+        echo json_encode(['message' => 'Appointment updated']);
+    } else {
+        http_response_code(500);
+        echo json_encode(['message' => 'Failed to update appointment']);
+    }
+}
+
 
 }

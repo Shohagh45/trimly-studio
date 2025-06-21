@@ -76,4 +76,14 @@ class AppointmentService
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function updateUserAppointment(int $userId, int $id, string $date, string $time, string $description): bool
+{
+    $stmt = $this->pdo->prepare("
+        UPDATE appointments 
+        SET date = ?, time = ?, description = ? 
+        WHERE id = ? AND user_id = ?
+    ");
+    return $stmt->execute([$date, $time, $description, $id, $userId]);
+}
+
 }

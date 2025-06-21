@@ -2,20 +2,25 @@
   <header class="site-header">
     <nav class="nav-links">
       <div class="logo">
-        <img src="/logos.svg" alt="Logo" class="logo" />
+        <img src="/logos.svg" alt="Trimly Studio" class="logo" />
       </div>
-      <div>
+      <div class="links">
+        <router-link to="/" v-if="!isLoggedIn">Login</router-link>
+        <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
+
         <router-link to="/dashboard" v-if="isLoggedIn && !isAdmin">Dashboard</router-link>
         <router-link to="/book" v-if="isLoggedIn && !isAdmin">Book</router-link>
         <router-link to="/admin" v-if="isAdmin">Admin</router-link>
 
-        <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
+
+        <router-link to="/team">OurTeam</router-link>
+        <router-link to="/contact">Contact</router-link>
+        <router-link to="/about">About</router-link>
       </div>
       <button v-if="isLoggedIn" @click="logout" class="logout-btn">Logout</button>
     </nav>
   </header>
 </template>
-
 
 <script setup>
 import { computed } from 'vue'
@@ -51,14 +56,14 @@ function logout() {
   align-items: center;
 }
 
-.nav-links div a {
+.links a {
   margin: 0 1rem;
   color: rgb(247, 242, 242);
   text-decoration: none;
   font-weight: bold;
 }
 
-.nav-links a.router-link-exact-active {
+.links a.router-link-exact-active {
   text-decoration: underline;
 }
 
@@ -83,17 +88,8 @@ function logout() {
   text-decoration: none;
 }
 
-.logo-text {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-  margin-right: 1.5rem;
-  text-decoration: none;
-}
-
 .logo img {
   height: 50px;
-  /* or adjust to 30px/50px as you like */
   width: auto;
   object-fit: contain;
 }

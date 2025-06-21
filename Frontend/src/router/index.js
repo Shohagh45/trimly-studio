@@ -3,7 +3,10 @@ import LoginPage from '../components/LoginPage.vue';
 import DashboardPage from '../components/DashboardPage.vue';
 import CreateAppointment from '../components/CreateAppointment.vue';
 import AdminDashboard from '@/components/AdminDashboard.vue';
-import RegisterPage from '@/components/RegisterPage.vue'
+import RegisterPage from '@/components/RegisterPage.vue';
+import AboutUs from '@/components/AboutUs.vue';
+import OurTeam from '@/components/OurTeam.vue';
+import Contact from '@/components/Contact.vue';
 
 
 
@@ -14,6 +17,9 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: DashboardPage, meta: { requiresAuth: true } },
   { path: '/book', name: 'Book', component: CreateAppointment, meta: { requiresAuth: true } },
   { path: '/admin', name: 'AdminDashboard', component: AdminDashboard, meta: { requiresAuth: true, requiresAdmin: true } },
+  { path: '/about', name: 'About', component: AboutUs},
+  { path: '/team', name: 'Team', component: OurTeam },
+  { path: '/contact', name: 'Contact', component: Contact },
 ];
 
 const router = createRouter({
