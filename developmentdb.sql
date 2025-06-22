@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jun 20, 2025 at 08:16 PM
+-- Generation Time: Jun 22, 2025 at 11:20 AM
 -- Server version: 11.8.2-MariaDB-ubu2404
 -- PHP Version: 8.2.28
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `developmentdb`
 --
-CREATE DATABASE IF NOT EXISTS `developmentdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_uca1400_ai_ci;
-USE `developmentdb`;
 
 -- --------------------------------------------------------
 
@@ -44,9 +42,9 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`id`, `user_id`, `date`, `time`, `description`, `created_at`, `updated_at`) VALUES
-(21, 4, '2025-06-19', '13:57:00', 'Beard Trim - ', '2025-06-19 10:57:59', NULL),
-(22, 4, '2025-06-20', '14:58:00', 'Beard Trim - ', '2025-06-19 10:58:07', NULL),
-(25, 1, '2025-06-19', '10:44:00', 'Haircut - ', '2025-06-19 20:44:15', NULL);
+(29, 4, '2025-06-13', '23:47:00', 'Haircut - ', '2025-06-20 21:43:10', '2025-06-21 11:23:30'),
+(32, 4, '2025-06-22', '01:39:00', 'Beard Trim - ', '2025-06-20 22:39:42', '2025-06-21 11:23:42'),
+(33, 4, '2025-06-27', '02:35:00', 'Beard Trim - none', '2025-06-20 23:35:09', '2025-06-21 11:23:57');
 
 -- --------------------------------------------------------
 
@@ -92,7 +90,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'user@example.com', '$2y$10$B5Py7KPlxVLfn.Av5iPMr.t7kSFAKht5RYwf8bCcsXnR1TK8Q4ctu', 'admin', '2025-06-07 23:39:22', '2025-06-15 23:40:32'),
 (3, 'test@example.com', '$2y$10$JHPWhU9F/pZ3i4k6y8EFBu6F7O2fUw9Gk7WxWJ6qEu1tfB4lNFNzy', 'user', '2025-06-09 18:23:37', '2025-06-13 22:14:41'),
-(4, 'shohagh@gmail.com', '$2y$10$GCfJJiCyRGwCz1YDoO2ZfO2rsH1ot0CvvvujdeHx4coCTm7TCNQMG', 'user', '2025-06-18 11:34:05', NULL);
+(4, 'shohagh@gmail.com', '$2y$10$GCfJJiCyRGwCz1YDoO2ZfO2rsH1ot0CvvvujdeHx4coCTm7TCNQMG', 'user', '2025-06-18 11:34:05', NULL),
+(5, 'N', '$2y$10$ytQ3XBdyjW622uSjMt7b6O5Fl9EV400z7uuh/PaYJmHmF8Cd5wKSm', 'user', '2025-06-22 10:09:21', NULL),
+(6, 'donald', '$2y$10$VYCE1UnZUERJUJLW3LUcW.nwJe9.JBpEChuz0QJTOb5dFRwL.xySq', 'user', '2025-06-22 10:10:32', NULL);
 
 --
 -- Indexes for dumped tables
@@ -125,13 +125,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
