@@ -1,13 +1,14 @@
 # Trimly Studio
 
-A simple barbershop appointment booking app using Vue 3, PHP (no framework), and JWT authentication.
+Trimly Studio
+Trimly Studio is a modern barbershop appointment booking system designed to streamline scheduling for both customers and administrators. Users can book grooming services such as haircuts or beard trims, while admins manage all appointments from a dedicated dashboard. Built with Vue 3 and PHP, the system ensures secure access via JWT authentication and provides a clean, responsive interface.
 
 ## 🛠 Tech Stack
 - Vue 3 (Vite, Pinia, Vue Router)
 - PHP 8.2 (custom API, JWT)
 - Docker + MariaDB + phpMyAdmin
 
-## 🧪 Test Accounts
+## 🧪 Admin & Test Accounts
 
 ### Admin
 - **Email**: user@example.com
@@ -29,15 +30,9 @@ docker-compose up --build
 ### Frontend 
 cd Frontend
 npm install
+npm run dev 
+OR
 npx vite --port 5174
 
 
-## ✅ Progress Summary
-
-- [x] JWT login flow (backend + frontend)
-- [x] Dockerized PHP, MariaDB, phpMyAdmin
-- [x] Role-based routing (admin/user)
-- [x] Register endpoint (working)
-- [x] Dashboard + protected routes
-- [x] Appointment creation (WIP)
 

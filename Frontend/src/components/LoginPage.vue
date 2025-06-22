@@ -1,5 +1,5 @@
 <template>
-  <section class="login-section"> 
+  <section class="login-section">
     <div class="login-box">
       <h1>Login</h1>
       <form @submit.prevent="handleLogin">
@@ -25,7 +25,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import api from '@/api' // ✅ uses centralized axios instance
+import api from '@/api' 
 
 const email = ref('')
 const password = ref('')
@@ -45,11 +45,11 @@ async function handleLogin() {
       throw new Error('Invalid login response');
     }
 
-    // Save to localStorage
+   
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
 
-    // Redirect by role
+    
     if (role === 'admin') {
       router.push('/admin');
     } else {

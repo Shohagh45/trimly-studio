@@ -29,7 +29,7 @@
         </tr>
       </tbody>
     </table>
-    
+
     <p v-if="appointments.length === 0" style="margin-top: 1rem;">No appointments found.</p>
 
     <div v-if="editing" class="modal">
@@ -38,15 +38,23 @@
         <form @submit.prevent="updateAppointment">
           <input v-model="form.date" type="date" required />
           <input v-model="form.time" type="time" required />
-          <textarea v-model="form.description" placeholder="Notes..."></textarea>
+          <select v-model="form.service" required>
+            <option disabled value="">Select a service</option>
+            <option>Haircut</option>
+            <option>Beard Trim</option>
+            <option>Full Grooming</option>
+          </select>
+
+          <textarea v-model="form.notes" placeholder="Optional notes..."></textarea>
+
+
           <button type="submit">Update</button>
           <button @click="cancelEdit" type="button">Cancel</button>
         </form>
       </div>
     </div>
     <div class="top-bar">
-  <button class="logout-btn" @click="logout">Logout</button>
-</div>
+    </div>
 
   </section>
 </template>
@@ -81,13 +89,17 @@ async function fetchAppointments() {
 
 function editAppointment(appt) {
   editing.value = true
+  const [service, notes = ''] = appt.description.split(' - ')
   form.value = {
-  id: appt.id,
-  date: appt.date,
-  time: appt.time,
-  description: appt.description
+    id: appt.id,
+    date: appt.date,
+    time: appt.time,
+    service: service.trim(),
+    notes: notes.trim()
+  }
 }
-}
+
+
 
 function cancelEdit() {
   editing.value = false
@@ -96,21 +108,22 @@ function cancelEdit() {
 
 async function updateAppointment() {
   const token = localStorage.getItem('token')
-  try {
-    await axios.put(
-      'http://localhost:8001/admin/admin-appointments.php',
-      form.value,
-      { headers: { Authorization: `Bearer ${token}` } }
-    )
-  } catch (err) {
-    console.error('Update error status:', err.response?.status)
-    console.error('Update error data:', err.response?.data)
-    return
+  const payload = {
+    ...form.value,
+    description: `${form.value.service} - ${form.value.notes}`
   }
+
+  await axios.put(
+    'http://localhost:8001/admin/admin-appointments.php',
+    payload,
+    { headers: { Authorization: `Bearer ${token}` } }
+  )
 
   await fetchAppointments()
   cancelEdit()
 }
+
+
 
 async function deleteAppointment(id) {
   const token = localStorage.getItem('token')
@@ -149,8 +162,11 @@ onMounted(fetchAppointments)
 .admin-dashboard {
   padding: 2rem;
 }
-th, td {
-  text-align: left; /* Or use 'center' if you want them centered */
+
+th,
+td {
+  text-align: left;
+  /* Or use 'center' if you want them centered */
   padding: 0.75rem;
   border-bottom: 1px solid #eee;
 }
@@ -232,6 +248,7 @@ button:hover {
     opacity: 1;
   }
 }
+
 .top-bar {
   display: flex;
   justify-content: flex-end;

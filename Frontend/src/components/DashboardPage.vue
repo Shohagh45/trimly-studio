@@ -6,20 +6,14 @@
     <div v-if="appointments.length">
       <div v-for="appt in appointments" :key="appt.id" class="card fade-in">
         <p><strong>{{ formatDate(appt.date) }} at {{ formatTime(appt.time) }}</strong></p>
-<p class="description">
-  <em>{{ appt.description }}</em>
-</p>
+        <p class="description">
+          <em>{{ appt.description }}</em>
+        </p>
 
-        <button
-          class="cancel-btn"
-          @click="cancelAppointment(appt.id)"
-          :disabled="!canCancel(appt.date, appt.time)">
+        <button class="cancel-btn" @click="cancelAppointment(appt.id)" :disabled="!canCancel(appt.date, appt.time)">
           Cancel
         </button>
-        <button
-          class="edit-btn"
-          @click="editAppointment(appt)"
-          :disabled="!canCancel(appt.date, appt.time)">
+        <button class="edit-btn" @click="editAppointment(appt)" :disabled="!canCancel(appt.date, appt.time)">
           Edit
         </button>
         <p v-if="!canCancel(appt.date, appt.time)" class="cancel-warning">
@@ -37,13 +31,13 @@
         <form @submit.prevent="updateAppointment">
           <input v-model="form.date" type="date" required />
           <input v-model="form.time" type="time" required />
-         <select v-model="form.service" required>
-  <option value="">Select a service</option>
-  <option value="Haircut">Haircut</option>
-  <option value="Beard Trim">Beard Trim</option>
-  <option value="Full Grooming">Full Grooming</option>
-</select>
-<textarea v-model="form.notes" placeholder="Notes (optional)"></textarea>
+          <select v-model="form.service" required>
+            <option value="">Select a service</option>
+            <option value="Haircut">Haircut</option>
+            <option value="Beard Trim">Beard Trim</option>
+            <option value="Full Grooming">Full Grooming</option>
+          </select>
+          <textarea v-model="form.notes" placeholder="Notes (optional)"></textarea>
 
           <button type="submit">Update</button>
           <button @click="cancelEdit" type="button">Cancel</button>
@@ -79,13 +73,13 @@ async function cancelAppointment(id) {
 function editAppointment(appt) {
   editing.value = true
   const [service, notes = ''] = appt.description.split(' - ')
-form.value = {
-  id: appt.id,
-  date: appt.date,
-  time: appt.time,
-  service: service.trim(),
-  notes: notes.trim()
-}
+  form.value = {
+    id: appt.id,
+    date: appt.date,
+    time: appt.time,
+    service: service.trim(),
+    notes: notes.trim()
+  }
 
 }
 
@@ -160,7 +154,7 @@ onMounted(fetchAppointments)
 }
 
 .card {
-  background: #f3f4f6;
+  background: #d9d9d9c2;
   margin-bottom: 1rem;
   padding: 1.2rem;
   border-radius: 6px;
@@ -225,8 +219,15 @@ button:disabled {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pop-in {
@@ -234,15 +235,16 @@ button:disabled {
     transform: scale(0.9);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
   }
 }
+
 .description {
   font-size: 0.95rem;
   color: #374151;
   margin-top: 0.5rem;
 }
-
 </style>

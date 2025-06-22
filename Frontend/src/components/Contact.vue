@@ -2,7 +2,6 @@
   <section class="contact-section">
     <h2>Contact Us</h2>
     <div class="contact-grid">
-      <!-- Contact Info -->
       <div class="contact-info">
         <div class="support-profile">
           <img src="/Donald Trump.webp" alt="Trimly Studio" class="logo" />
@@ -14,8 +13,8 @@
         </div>
 
         <p><strong>Address:</strong><br />
-        Haarlemmerstraat 123,<br />
-        Amsterdam, Netherlands</p>
+          Haarlemmerstraat 123,<br />
+          Amsterdam, Netherlands</p>
 
         <p><strong>Opening Hours:</strong></p>
         <ul>
@@ -25,20 +24,22 @@
         </ul>
 
         <div class="social-links">
-          <a href="https://instagram.com" target="_blank">Instagram</a>
-          <a href="https://facebook.com" target="_blank">Facebook</a>
+          <a href="https://instagram.com" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a href="https://facebook.com" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook
+          </a>
         </div>
-<div class="map-container">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18..."
-    allowfullscreen
-    loading="lazy">
-  </iframe>
-</div>
+
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18..." allowfullscreen loading="lazy">
+          </iframe>
+        </div>
 
       </div>
 
-      <!-- Contact Form -->
+
       <form class="contact-form">
         <input type="text" placeholder="Your Name" required />
         <input type="email" placeholder="Your Email" required />
@@ -50,6 +51,10 @@
 </template>
 
 <style scoped>
+.social-links i {
+  margin-right: 6px;
+}
+
 .contact-section {
   padding: 2rem;
   max-width: 1000px;
@@ -121,15 +126,15 @@ h2 {
   color: #2b7fb8;
   text-decoration: none;
 }
+
 .map-container {
-  margin-bottom: 10rem; /* Creates spacing above footer */
+  margin-bottom: 10rem;
 }
+
 .map-container iframe {
   width: 100%;
   height: 250px;
   border: none;
   display: block;
 }
-
-
 </style>

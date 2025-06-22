@@ -44,15 +44,18 @@ async function registerUser() {
   border-radius: 10px;
   text-align: center;
 }
+
 input {
   width: 100%;
   margin: .5rem 0;
   padding: .5rem;
 }
+
 button {
   margin-top: 1rem;
   padding: .5rem 1rem;
 }
+
 p {
   margin-top: .5rem;
   color: #333;

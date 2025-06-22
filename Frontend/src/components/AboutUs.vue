@@ -21,7 +21,7 @@
   text-align: center;
   font-family: 'Georgia', serif;
   color: #222;
-  flex-grow: 1; /* allow it to stretch the layout */
+  flex-grow: 1;
 }
 
 .page-section h2 {
@@ -37,7 +37,7 @@
 
 .image-wrapper {
   margin-top: 2rem;
-  margin-bottom: 3rem; /* spacing from footer */
+  margin-bottom: 3rem;
 }
 
 .about-image {

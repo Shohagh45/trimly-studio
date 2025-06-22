@@ -82,7 +82,8 @@ function logout() {
 <style scoped>
 .appointment-form {
   max-width: 500px;
-  margin: 3rem auto 6rem; /* bottom margin for footer spacing */
+  margin: 3rem auto 6rem;
+  /* bottom margin for footer spacing */
   padding: 2rem;
   border-radius: 10px;
   background-color: #10101042;

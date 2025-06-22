@@ -36,7 +36,7 @@ class JWTService
 
         [$headerB64, $payloadB64, $signatureB64] = $parts;
 
-        // Recalculate signature
+
         $expectedSignature = hash_hmac(
             'sha256',
             "$headerB64.$payloadB64",
@@ -46,16 +46,16 @@ class JWTService
 
         $expectedSignatureB64 = rtrim(strtr(base64_encode($expectedSignature), '+/', '-_'), '=');
 
-        // Constant-time comparison to avoid timing attacks
+
         if (!hash_equals($expectedSignatureB64, $signatureB64)) {
             return null;
         }
 
-        // Decode and validate payload
+
         $payload = json_decode(base64_decode(strtr($payloadB64, '-_', '+/')), true);
 
         if (!isset($payload['exp']) || time() > $payload['exp']) {
-            return null; // Token expired
+            return null;
         }
 
         return $payload;

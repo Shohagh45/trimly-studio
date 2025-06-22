@@ -19,7 +19,7 @@ html, body, #app {
 
 .site-footer {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   background: #f1f1f1;
   color: #333;
   position: fixed;
